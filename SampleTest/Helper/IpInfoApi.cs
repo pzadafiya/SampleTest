@@ -12,12 +12,12 @@ namespace SampleTest.Helper
 	public class IpInfoApi
 	{
 
-		public string _Host { get; set; }
-		public string _Token { get; set; }
+		private string _host { get; set; }
+		private string token { get; set; }
 		public IpInfoApi(string host, string token)
 		{
-			_Host = host;
-			_Token = token;
+			_host = host;
+			this.token = token;
 		}
 
 		/// <param name="ipAddress"></param>
@@ -30,9 +30,9 @@ namespace SampleTest.Helper
 			{
 				using (HttpClient client = new HttpClient())
 				{
-					string url = string.Format("{0}{1}", _Host, ipAddress);
-					client.BaseAddress = new Uri(_Host);
-					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _Token);
+					string url = string.Format("{0}{1}", _host, ipAddress);
+					client.BaseAddress = new Uri(_host);
+					client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 					var response = await client.GetAsync(url);
 					if (response != null)
 					{

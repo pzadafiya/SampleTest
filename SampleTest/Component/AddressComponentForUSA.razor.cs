@@ -21,20 +21,20 @@ namespace SampleTest.Component
 		public EventCallback<IPInfoResponse> IPInfoResponseChanged { get; set; }
 
 
-		public string IPAddress { get; set; }
+		public string _ipAddress { get; set; }
 		protected override async Task OnInitializedAsync()
 		{
 			await base.OnInitializedAsync();
-			IPAddress = GetServerIPAddress();
+			_ipAddress = GetServerIPAddress();
 			IPInfoResponse = await GetIPInfo();
 		}
 
 		public async Task<IPInfoResponse> GetIPInfo()
 		{
-			var token = ConfigSetting.AccessToken;
-			var host = ConfigSetting.Host;
-			IpInfoApi ipInfoApi = new IpInfoApi(host, token);
-			IPInfoResponse = await ipInfoApi.GetInformationByIpsAsync(IPAddress);
+			var token = ConfigSetting.IpLocationApiAccessToken;
+			var host = ConfigSetting.IpLocationApiUrl;
+			var ipInfoApi = new IpInfoApi(host, token);
+			IPInfoResponse = await ipInfoApi.GetInformationByIpsAsync(_ipAddress);
 			await IPInfoResponseChanged.InvokeAsync(IPInfoResponse);
 			return IPInfoResponse;
 		}

@@ -2,7 +2,7 @@
 {
 	public class ConfigSetting
 	{
-		public const string AccessToken = "2b32896a73b6ad";
-		public const string Host = "https://ipinfo.io/";
+		public const string IpLocationApiUrl = "https://ipinfo.io/";
+		public const string IpLocationApiAccessToken = "2b32896a73b6ad";
 	}
 }
