@@ -39,10 +39,10 @@ namespace SampleTest.Component
 			return IPInfoResponse;
 		}
 
-		public async Task onLookUpClick()
-		{
-			IPInfoResponse = await GetIPInfo();
-		}
+		//public async Task onLookUpClick()
+		//{
+		//	IPInfoResponse = await GetIPInfo();
+		//}
 
 		public string GetServerIPAddress()
 		{
