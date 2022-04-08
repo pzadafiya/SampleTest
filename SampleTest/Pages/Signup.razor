@@ -1,0 +1,43 @@
+﻿@page "/"
+@using SampleTest.Models
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Sign Up</h2>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="inputEmail" class="col-4 control-label">Email</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="inputEmail" name="Email" placeholder="Email">
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="inputFullName" class="col-4 control-label">Full Name</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="inputFullName" name="full-name" placeholder="Full Name">
+                </div>
+            </div>
+        </div>
+    </div>
+    <AddressComponentForUSA @bind-IPInfoResponse=IPInfoResponse></AddressComponentForUSA>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <div class="col-10">
+                    <button type="button" class="btn btn-primary" @onclick="onSignUpClick" id="btnSignup">SignUP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    
+
+}
