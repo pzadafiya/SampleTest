@@ -16,7 +16,7 @@
         </div>
         <div class="col-6">
             <div class="form-group">
-                <label for="inputFullName" class="col-4 control-label">Full Name</label>
+                <label for="inputFullName" class="col-4 control-label"> Name</label>
                 <div class="col-10">
                     <input type="text" class="form-control" id="inputFullName" name="full-name" placeholder="Full Name">
                 </div>
@@ -29,7 +29,16 @@
         <div class="col-6">
             <div class="form-group">
                 <div class="col-10">
-                    <button type="button" class="btn btn-primary" @onclick="onSignUpClick" id="btnSignup">SignUP</button>
+                    <button type="button" class="btn btn-primary" @onclick="onSignUpClick" id="btnSignup">SignUp</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <div class="col-10">
+                    <label class="alert-primary">@_feedbackMessage</label>
                 </div>
             </div>
         </div>
