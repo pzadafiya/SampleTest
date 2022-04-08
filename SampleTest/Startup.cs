@@ -27,6 +27,11 @@ namespace SampleTest
 		{
 			services.AddRazorPages();
 			services.AddServerSideBlazor();
+
+			services
+				.AddCors(x => x.AddPolicy("externalRequests",
+					policy => policy
+				.WithOrigins("https://api.ipify.org")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +58,8 @@ namespace SampleTest
 				endpoints.MapBlazorHub();
 				endpoints.MapFallbackToPage("/_Host");
 			});
+
+			app.UseCors("externalRequests");
 		}
 	}
 }

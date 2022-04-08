@@ -11,14 +11,8 @@ namespace SampleTest.Component
 {
     public partial class AddressComponentForUSA
     {
-        [Inject]
-        private NavigationManager _navigationManager { get; set; }
-
         [Inject] 
         private IJSRuntime _jsRuntime { get; set; }
-
-        [Parameter]
-        public AppUserContextInfo contextInfo { get; set; }
 
         [Parameter]
         public IPInfoResponse IPInfoResponse { get; set; }
