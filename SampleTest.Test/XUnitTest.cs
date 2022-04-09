@@ -17,7 +17,7 @@ namespace SampleTest.Test
 		public void GetIpAddressOnCompomnentLoad()
 		{
 			using var ctx = new TestContext();
-
+			ctx.JSInterop.Mode = JSRuntimeMode.Loose;
 			// Arrange: render the AddressComponentForUSA.razor component
 			var cut = ctx.RenderComponent<AddressComponentForUSA>();
 			var ipAddress = cut.Instance.GetServerIPAddress();
@@ -27,20 +27,20 @@ namespace SampleTest.Test
 			// Assert: verfiy ip address
 		}
 
-		[Fact]
-		public async Task GetAddressDetailsFromIpOnCompomnentLoad()
-		{
-			using var ctx = new TestContext();
+        [Fact]
+        public async Task GetAddressDetailsFromIpOnCompomnentLoad()
+        {
+            using var ctx = new TestContext();
+            ctx.JSInterop.Mode = JSRuntimeMode.Loose;
+            // Arrange: render the AddressComponentForUSA.razor component
+            //using var ctx = new TestContext();
+            var cut = ctx.RenderComponent<AddressComponentForUSA>();
+            var ipInfo = await cut.Instance.GetIPInfo("52.8.76.51");
+            // Act: check address details based on ip address on load
 
-			// Arrange: render the AddressComponentForUSA.razor component
-			//using var ctx = new TestContext();
-			var cut = ctx.RenderComponent<AddressComponentForUSA>();
-			var ipInfo = await cut.Instance.GetIPInfo();
-			// Act: check address details based on ip address on load
+            Assert.NotNull(ipInfo.Country);
+            // Assert: verfiy address details based on ip address.
 
-			Assert.NotNull(ipInfo.Country);
-			// Assert: verfiy address details based on ip address.
-
-		}
-	}
+        }
+    }
 }

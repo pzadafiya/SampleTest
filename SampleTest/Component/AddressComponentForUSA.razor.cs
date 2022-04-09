@@ -26,15 +26,15 @@ namespace SampleTest.Component
             if (firstRender)
             {
                 _ipAddress = await GetServerIPAddress();
-                IPInfoResponse = await GetIPInfo();
+                IPInfoResponse = await GetIPInfo(_ipAddress);
             }
         }
-        public async Task<IPInfoResponse> GetIPInfo()
+        public async Task<IPInfoResponse> GetIPInfo(string ipAddress)
         {
             var token = ConfigSetting.IpLocationApiAccessToken;
             var host = ConfigSetting.IpLocationApiUrl;
             var ipInfoApi = new IpInfoApi(host, token);
-            if (string.IsNullOrWhiteSpace(_ipAddress))
+            if (string.IsNullOrWhiteSpace(ipAddress))
                 return new IPInfoResponse();
             IPInfoResponse = await ipInfoApi.GetInformationByIpsAsync(_ipAddress);
             await IPInfoResponseChanged.InvokeAsync(IPInfoResponse);

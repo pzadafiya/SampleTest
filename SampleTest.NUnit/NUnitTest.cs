@@ -9,9 +9,10 @@ namespace SampleTest.NUnit
 	{
 		[SetUp]
 		public void Setup() => TestContext = new Bunit.TestContext();
-
+		
 		[TearDown]
 		public void TearDown() => TestContext?.Dispose();
+		
 	}
 
 	public class NUnitTest : BunitTestContext
@@ -21,6 +22,7 @@ namespace SampleTest.NUnit
 		public void GetIpAddressOnCompomnentLoadNUnit()
 		{
 			// Arrange: render the AddressComponentForUSA.razor component
+			TestContext.JSInterop.Mode = JSRuntimeMode.Loose;
 			var cut = RenderComponent<AddressComponentForUSA>();
 			var ipAddress = cut.Instance.GetServerIPAddress();
 			// Act: check ip address on load
@@ -33,9 +35,10 @@ namespace SampleTest.NUnit
 		public async Task GetAddressDetailsFromIpOnCompomnentLoadNUnit()
 		{
 			// Arrange: render the AddressComponentForUSA.razor component
-			//using var ctx = new TestContext();
+			TestContext.JSInterop.Mode = JSRuntimeMode.Loose;
 			var cut = RenderComponent<AddressComponentForUSA>();
-			var ipInfo = await cut.Instance.GetIPInfo();
+			
+			var ipInfo = await cut.Instance.GetIPInfo("52.8.76.51");
 			// Act: check address details based on ip address on load
 
 			Assert.NotNull(ipInfo.Country);
